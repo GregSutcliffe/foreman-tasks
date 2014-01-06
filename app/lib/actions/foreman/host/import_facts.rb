@@ -19,6 +19,8 @@ module Actions
             state          = host.importFacts(input[:facts])
             output[:state] = state
           end
+        rescue Exception => e
+          raise e unless e.message == 'ERF51-9911: Host is pending for Build'
         end
 
         def humanized_name
